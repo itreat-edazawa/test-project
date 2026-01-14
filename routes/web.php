@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
+use App\Http\Controller\CsvDownloadController;
 use App\Http\Controllers\PostController;
 
 
@@ -53,6 +53,9 @@ Route::post('post/like', [PostController::class, 'like'])
 
 Route::post('post/unlike',[PostController::class, 'unlike'])
 ->name('post.unlike');
+
+
+Route::get('/csv-download-posts', [CsvDownloadController::class,'downloadCsv']);
 
 
 
