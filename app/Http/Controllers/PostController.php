@@ -230,23 +230,109 @@ class PostController extends Controller
     }
 
     public function PostDownloadCsv(Request $request){
-        $posts = Post::all();
-        $csvHeader = ['ポストID','タイトル','内容','いいね数','ポスト日','最終更新日','ユーザーID'];
-        $csvData = $posts->toArray();
+        
+        $time_fn_chk = $request['time_fn'];
+
+        $validated = $request->validate([
+
+
+            'username' => 'nullable|string|max:20',
+            'title' => 'nullable|string|max:30',
+            'user_id' => 'nullable|integer|max:20',
+            'freeword' => 'nullable|string|max:250',
+
+            'time_st' => 'nullable|date|before_or_equal:'.Carbon::parse($time_fn_chk)->format('Y-m-d'),
+            'time_fn' => 'nullable|date|before_or_equal:'.Carbon::now()->format('Y-m-d'),
+
+        ],[
+            
+        ]);
+
+        $posts = Post::query();
+        $sort_id = $request['sort_id'] ?? '0';
+        if(!empty($request['sort_id'])){
+            
+
+            if($sort_id=='newest'){
+                $posts = Post::latest();
+            }
+            else if($sort_id=='oldest'){
+                $posts = Post::oldest();
+            }
+            //いいねの数把握
+            else if($sort_id=='most likes'){
+                $posts = Post::orderby('like_sum','desc');
+            }
+            else if($sort_id=='least likes'){
+                $posts = Post::orderby('like_sum','asc');
+            }
+
+       
+
+        
+        }
+        
+
+        $username = $validated['username'] ?? '';
+        $title = $validated['title'] ?? '';
+        $user_id = $validated['user_id'] ?? '';
+        $freeword = $validated['freeword'] ?? '';
+        $time_st = $validated['time_st'] ?? '';
+        $time_fn = $validated['time_fn'] ?? '';
+
+        
+
+        //if文　空の時は全検索
+        if(!empty($user_id)){
+            $posts = $posts->where('user_id',$user_id);
+        }
+
+        if(!empty($username)){
+            $posts = $posts->join('users','posts.user_id','=','users.id')
+                     ->where('name', 'LIKE', '%' .$username. '%');
+        }
+
+        if(!empty($title)){
+            $posts = $posts->where('title','LIKE', '%' .$title. '%');
+        }
+
+        if(!empty($freeword)){
+            $posts = $posts->where('body','LIKE', '%' .$freeword. '%');
+        }
+       
+        if(!empty($time_st)){
+            $posts = $posts->where('posts.created_at', '>=', $time_st);
+        }
+
+        if(!empty($time_fn)){
+            $posts = $posts->where('posts.created_at', '<=', $time_fn);
+        }
+
+        $posts = $posts->paginate(10);
+        $csvHeader = ['ポストID','ユーザーID','タイトル','内容','いいね数','ポスト日','最終更新日'];
+        
 
         $response = new StreamedResponse(function() use ($csvHeader,$csvData){
             $handle = fopen('php//output','w');
             fputcsv($handle,$csvHeader);
 
-            foreach($csvData as $row){
-                fputcsv($handle,$row);
+            foreach($posts as $post){
+                $row = [
+                    $post->id,
+                    $post->user_id,
+                    $post->title,
+                    $post->body,
+                    $post->like_sum,
+                    $post->created_at,
+                    $post->updated_at,
+
+                ];
             }
 
             fclosw($handle);
-        },200,[
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="posts.csv"',
-        ]);
+        });
+        $response->headers->set('Content-Type','text/csv');
+        $response->headers->set('Content-Disposition','attachment; filename="posts.csv');
 
         return $response;
 
