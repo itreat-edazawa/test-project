@@ -56,17 +56,17 @@ class PostController extends Controller
         if(!empty($request['sort_id'])){
             
 
-            if($sort_id==1){
+            if($sort_id=='newest'){
                 $posts = Post::latest();
             }
-            else if($sort_id==2){
+            else if($sort_id=='oldest'){
                 $posts = Post::oldest();
             }
             //いいねの数把握
-            else if($sort_id==3){
+            else if($sort_id=='most likes'){
                 $posts = Post::orderby('like_sum','desc');
             }
-            else if($sort_id==4){
+            else if($sort_id=='least likes'){
                 $posts = Post::orderby('like_sum','asc');
             }
 
