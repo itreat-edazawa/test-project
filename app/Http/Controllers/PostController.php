@@ -80,7 +80,32 @@ class PostController extends Controller
 
         
 
-        
+        //if文　空の時は全検索
+        if(!empty($user_id)){
+            $posts = $posts->where('user_id',$user_id);
+        }
+
+        if(!empty($username)){
+            $posts = $posts->join('users','posts.user_id','=','users.id')
+                     ->where('name', 'LIKE', '%' .$username. '%');
+        }
+
+        if(!empty($title)){
+            $posts = $posts->where('title','LIKE', '%' .$title. '%');
+        }
+
+        if(!empty($freeword)){
+            $posts = $posts->where('body','LIKE', '%' .$freeword. '%');
+        }
+       
+        if(!empty($time_st)){
+            $posts = $posts->where('posts.created_at', '>=', $time_st);
+        }
+
+        if(!empty($time_fn)){
+            $posts = $posts->where('posts.created_at', '<=', $time_fn);
+        }
+
 
 
         
