@@ -55,7 +55,8 @@ Route::post('post/unlike',[PostController::class, 'unlike'])
 ->name('post.unlike');
 
 
-Route::get('/csv-download-posts', [CsvDownloadController::class,'downloadCsv']);
+Route::get('post/csv-download', [PostController::class,'PostDownloadCsv'])
+->name('post.csvdownload');
 
 
 

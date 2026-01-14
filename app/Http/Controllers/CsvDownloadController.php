@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CsvDownloadController extends Controller
 {
-    public function PostDownloadCsv(){
+    public function PostDownloadCsv(Request $request){
         $posts = Post::all();
         $csvHeader = ['ポストID','タイトル','内容','いいね数','ポスト日','最終更新日','ユーザーID'];
         $csvData = $posts->toArray();
