@@ -55,10 +55,10 @@
                     <p>並び替え</p>
                     <select class = "form-select" id="sort" name="sort_id">
                         <option value="">選択してください</option>
-                        <option value="1" @selected(request('sort_id') == '1')>新しい順</option>
-                        <option value="2" @selected(request('sort_id') == '2')>古い順</option>
-                        <option value="3" @selected(request('sort_id') == '3')>いいね多い順</option>
-                        <option value="4" @selected(request('sort_id') == '4')>いいね少ない順</option>
+                        <option value="1" @selected(request('sort_id') == 'newest')>新しい順</option>
+                        <option value="2" @selected(request('sort_id') == 'oldest')>古い順</option>
+                        <option value="3" @selected(request('sort_id') == 'most likes')>いいね多い順</option>
+                        <option value="4" @selected(request('sort_id') == 'least likes')>いいね少ない順</option>
                     </select>
                 </div>
             </div>
