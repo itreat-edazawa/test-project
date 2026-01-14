@@ -76,7 +76,12 @@ class PostController extends Controller
         }
         
 
-        
+        $username = $validated['username'] ?? '';
+        $title = $validated['title'] ?? '';
+        $user_id = $validated['user_id'] ?? '';
+        $freeword = $validated['freeword'] ?? '';
+        $time_st = $validated['time_st'] ?? '';
+        $time_fn = $validated['time_fn'] ?? '';
 
         
 
