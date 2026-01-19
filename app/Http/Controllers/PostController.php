@@ -308,12 +308,13 @@ class PostController extends Controller
             $posts = $posts->where('posts.created_at', '<=', $time_fn);
         }
 
-        $posts = $posts->paginate(10);
+        $posts = $posts->get();
         $csvHeader = ['ポストID','ユーザーID','タイトル','内容','いいね数','ポスト日','最終更新日'];
         
 
-        $response = new StreamedResponse(function() use ($csvHeader,$csvData){
-            $handle = fopen('php//output','w');
+        $response = new StreamedResponse(function() use ($csvHeader, $posts){
+            
+            $handle = fopen('php://output','w');
             fputcsv($handle,$csvHeader);
 
             foreach($posts as $post){
@@ -327,12 +328,17 @@ class PostController extends Controller
                     $post->updated_at,
 
                 ];
+                fputcsv($handle, $row);
             }
 
-            fclosw($handle);
+            fclose($handle);
         });
+
+        $data_time = Carbon::now();
+        
         $response->headers->set('Content-Type','text/csv');
-        $response->headers->set('Content-Disposition','attachment; filename="posts.csv');
+        $response->headers->set('Content-Disposition','attachment; filename="posts/"'.$data_time.'".csv"');
+        
 
         return $response;
 

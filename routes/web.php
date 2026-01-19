@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
 Route::get('post/view/{user_id}', [PostController::class, 'detail'])
 ->name('post.detail');
 
+Route::get('post/csv-download', [PostController::class,'PostDownloadCsv'])
+->name('post.csvdownload');
+
 Route::resource('post', PostController::class);
 //ルート設定の順番に気をつける
 // TODO getに変える
@@ -55,8 +58,7 @@ Route::post('post/unlike',[PostController::class, 'unlike'])
 ->name('post.unlike');
 
 
-Route::get('post/csv-download', [PostController::class,'PostDownloadCsv'])
-->name('post.csvdownload');
+
 
 
 
