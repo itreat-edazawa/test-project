@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -37,6 +38,13 @@ class AppServiceProvider extends ServiceProvider
         if($user->id === $post->user_id){
             return true;
         }
+        return false;
+       });
+
+       Gate::define('reply-post',function(User $user){
+            if(Auth::check()){
+                return true;
+            }
         return false;
        });
     }

@@ -6,7 +6,7 @@
     </x-slot>
     <div class="mx-auto px-6">
         
-        <div class="bg-white w-full rounded-2xl">
+        <div class="bg-white w-full rounded-2xl mb-1">
             <div class="mt-4 p-4">
                 <h1 class="text-lg font-semibold">
                     {{$post->title}}
@@ -39,6 +39,13 @@
                 </p>
             </div>
         </div>
+
+        
    
     </div>
+    @can('reply-post')
+        <x-primary-button>
+            返信
+        </x-primary-button>
+    @endcan
 </x-app-layout>
