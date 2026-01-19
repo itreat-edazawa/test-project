@@ -315,6 +315,8 @@ class PostController extends Controller
         $response = new StreamedResponse(function() use ($csvHeader, $posts){
             
             $handle = fopen('php://output','w');
+            //BOMの追加
+            fprintf($handle,"\xEF\xBB\xBF");
             fputcsv($handle,$csvHeader);
 
             foreach($posts as $post){
