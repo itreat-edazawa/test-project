@@ -44,8 +44,10 @@
    
     </div>
     @can('reply-post')
-        <x-primary-button>
-            返信
-        </x-primary-button>
+        <a href="{{route('post.replyview',$post)}}">
+            <x-primary-button>
+                返信
+            </x-primary-button>
+        </a>
     @endcan
 </x-app-layout>

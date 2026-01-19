@@ -345,6 +345,10 @@ class PostController extends Controller
     }
 
     
+    public function reply_view(Post $post){
+        return view('post.reply',compact('post'));
+    }
 
+    
     
 }

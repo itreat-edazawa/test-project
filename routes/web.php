@@ -57,6 +57,9 @@ Route::post('post/like', [PostController::class, 'like'])
 Route::post('post/unlike',[PostController::class, 'unlike'])
 ->name('post.unlike');
 
+Route::get('post/{post}/reply',[PostController::class, 'reply_view'])
+->name('post.replyview');
+
 
 
 
