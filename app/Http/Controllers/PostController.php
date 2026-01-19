@@ -204,8 +204,7 @@ class PostController extends Controller
             ]);
             
 
-            //いいね数の更新
-            Post::where('id',$posts_id)->increment('like_sum');
+            
         }
 
         
@@ -219,15 +218,14 @@ class PostController extends Controller
             $like = Likes::where('posts_id',$posts_id)->where('user_id',Auth::id());
             $like->delete();
 
-            //いいねの更新
-            $post = Post::find($posts_id);
-            if($post->like_sum > 0){
-                $post->decrement('like_sum');
-            }
+            
         }
 
         return back();
     }
+
+    
+    
 
     public function PostDownloadCsv(Request $request){
         
