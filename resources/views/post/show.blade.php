@@ -50,4 +50,25 @@
             </x-primary-button>
         </a>
     @endcan
+    <div class="ml-5 mr-5">
+        @foreach($replies as $reply)
+            <div class="mb-5">
+                <div class="bg-white  rounded-2xl mb-1">
+                    <div class="mt-4 p-4">
+                
+                        <p class="mt-4">
+                            {{$reply->body}}
+                        </p>
+                    <div class="text-sm font-semibold flex flex-row-reverse">
+                        <p>
+                            {{$reply->created_at}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+    @endforeach
+    </div>
+
+
+
 </x-app-layout>
