@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight flex">
             <p>一覧表示</p>
 
-            <a href="{{route('post.csvdownload',request()->query())}}" class="hover:cursor-pointer hover:text-blue-400 text-gray-800 absolute right-8">CSV出力</a>
+            <a href="{{route('post.csvdownload',request()->query())}}" class="hover:cursor-pointer hover:text-blue-400 text-gray-800 absolute right-10">CSV出力</a>
         </h2>
         
     </x-slot>
