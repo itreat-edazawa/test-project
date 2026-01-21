@@ -55,8 +55,12 @@
             <div class="mb-5">
                 <div class="bg-white  rounded-2xl mb-1">
                     <div class="mt-4 p-4">
-                
-                        <p class="mt-4">
+                        
+                        <h1 class="text-lg font-semibold">
+                            {{$reply->reply_user_id}}
+                        </h1>
+
+                        <p class="mt-4 whitespace-pre-line">
                             {{$reply->body}}
                         </p>
                     <div class="text-sm font-semibold flex flex-row-reverse">
