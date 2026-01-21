@@ -27,6 +27,10 @@ class Post extends Model
         return $this->HasMany(Likes::class,'posts_id');
     }
 
+    public function replies(){
+        return $this->HasMany(Post::class,'posts_id');
+    }
+
     public function CheckLiked(){
         $id = Auth::id();
 
@@ -37,10 +41,6 @@ class Post extends Model
         }
 
         return true;
-
-
-        
-  
         
     }
 }

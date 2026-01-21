@@ -313,7 +313,7 @@ class PostController extends Controller
         $response = new StreamedResponse(function() use ($csvHeader, $posts){
             
             $handle = fopen('php://output','w');
-            //BOMの追加
+            //BOMの追加<-これがないと文字化け
             fprintf($handle,"\xEF\xBB\xBF");
             fputcsv($handle,$csvHeader);
 
