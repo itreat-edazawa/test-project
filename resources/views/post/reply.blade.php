@@ -11,7 +11,7 @@
                 {{session('message')}}
             </div>
         @endif
-        <form method="post" action="{{ route('post.store') }}">
+        <form method="post" action="{{ route('post.reply',$post) }}">
         @csrf
             <div class="mt-8">
         

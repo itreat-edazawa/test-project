@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Likes;
+use App\Models\Reply;
 
 use Illuminate\Http\Request;
 
@@ -150,7 +151,8 @@ class PostController extends Controller
     }
 
     public function show (Post $post) {
-        return view('post.show', compact('post'));
+        $replies = Reply::paginate();
+        return view('post.show', compact('post','replies'));
 
         
     }
@@ -346,7 +348,26 @@ class PostController extends Controller
 
     
     public function reply_view(Post $post){
+        
         return view('post.reply',compact('post'));
+    }
+
+    public function reply(Request $request,Post $post){
+        $validated=$request->validate([
+            'body' => 'required|max:400',
+        ]);
+        $validated['reply_user_id'] = auth()->id();
+
+        $posts_id = $post->id;
+
+        $replies = Reply::create([
+            'body' => $validated['body'],
+            'posts_id' => $posts_id,
+            'reply_user_id' => $validated['reply_user_id'],
+        ]);
+
+        return redirect()->route('post.show',compact('post'));
+
     }
 
     

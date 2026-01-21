@@ -45,7 +45,7 @@ Route::get('post/view/{user_id}', [PostController::class, 'detail'])
 Route::get('post/csv-download', [PostController::class,'PostDownloadCsv'])
 ->name('post.csvdownload');
 
-Route::resource('post', PostController::class);
+
 //ルート設定の順番に気をつける
 // TODO getに変える
 Route::get('post', [PostController::class,'search'])
@@ -59,6 +59,11 @@ Route::post('post/unlike',[PostController::class, 'unlike'])
 
 Route::get('post/{post}/reply',[PostController::class, 'reply_view'])
 ->name('post.replyview');
+
+Route::post('post/{post}/reply',[PostController::class, 'reply'])
+->name('post.reply');
+
+Route::resource('post', PostController::class);
 
 
 
