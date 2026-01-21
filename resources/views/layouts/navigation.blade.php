@@ -15,10 +15,11 @@
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                         投稿一覧
                     </x-nav-link>
-                    
+                    @auth
                     <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                         新規作成
                     </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
@@ -29,6 +30,8 @@
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             @auth
                             <div>{{ Auth::user()->name }}</div>
+                            @else
+                            <div>{{"ログイン"}}</div>
                             @endauth
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -39,8 +42,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @auth
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('自分のプロフィール') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -50,9 +54,18 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('ログアウト') }}
                             </x-dropdown-link>
                         </form>
+                        @else
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('ログイン') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="route('register')">
+                                {{ __("新規登録")}}
+                            </x-dropdown-link>
+                        @endauth
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -75,10 +88,11 @@
             <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
                 投稿一覧
             </x-responsive-nav-link>
-            
+            @auth
             <x-responsive-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
                 新規作成
             </x-responsive-nav-link>
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
@@ -91,8 +105,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                @auth
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('自分のプロフィール') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -102,9 +117,18 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('ログアウト') }}
                     </x-responsive-nav-link>
                 </form>
+                @else
+                    <x-dropdown-link :href="route('login')">
+                        {{ __('ログイン') }}
+                    </x-dropdown-link>
+
+                    <x-dropdown-link :href="route('register')">
+                        {{__('新規登録') }}
+                    </x-dropdown-link>
+                @endauth
             </div>
         </div>
     </div>
