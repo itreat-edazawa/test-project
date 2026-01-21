@@ -39,12 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/favorite_food', [ProfileController::class, 'Getfavoritefood'])->name('profile.favfood');
 });
 
+
 Route::get('post/view/{user_id}', [PostController::class, 'detail'])
 ->name('post.detail');
 
 Route::get('post/csv-download', [PostController::class,'PostDownloadCsv'])
 ->name('post.csvdownload');
 
+Route::resource('post', PostController::class);
 
 //ルート設定の順番に気をつける
 // TODO getに変える
@@ -63,7 +65,7 @@ Route::get('post/{post}/reply',[PostController::class, 'reply_view'])
 Route::post('post/{post}/reply',[PostController::class, 'reply'])
 ->name('post.reply');
 
-Route::resource('post', PostController::class);
+
 
 
 
