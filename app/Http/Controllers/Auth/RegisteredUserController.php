@@ -37,18 +37,22 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $newUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        event(new Registered($newUser));
 
-        Auth::login($user);
+        Auth::login($newUser);
 
-        $mailer->to('test@example.com')
-            ->send(new NewUserIntroduction());
+        $allUser = User::get();
+        foreach ($allUser as $user){
+            $mailer->to($user->email)
+            ->send(new NewUserIntroduction($user,$newUser));
+        }
+        
 
         return redirect(route('dashboard', absolute: false));
     }

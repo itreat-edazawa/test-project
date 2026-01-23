@@ -8,19 +8,24 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
-class NewUserIntroduction extends Mailable
+class NewUserIntroduction extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    public User $toUser;
+    public User $newUser;
 
     
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(User $toUser, User $newUser)
     {
-        //
+        $this->toUser = $toUser;
+        $this->newUser = $newUser;
     }
 
     /**
@@ -39,7 +44,7 @@ class NewUserIntroduction extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.new_user_introduction',
+            markdown: 'email.new_user_introduction',
         );
     }
 
