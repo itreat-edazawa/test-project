@@ -1,3 +1,6 @@
+<head>
+    @vite(['resource/js/show.js'])
+</head>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -20,13 +23,15 @@
                         </x-primary-button>
                     </a>
 
-                    <form method="post" action="{{route('post.destroy',$post)}}" class="flex-2">
+                    @livewire('delete-post-modal', ['post' => $post])
+
+                    <!--<form method="post" action="{{route('post.destroy',$post)}}" class="flex-2">
                         @csrf
                         @method('delete')
                         <x-primary-button class="bg-red-700 ml-2">
                             削除
                         </x-primary-button>
-                    </form>
+                    </form>!-->
                 </div>
                 @endcan
                 <hr class="w-full">
