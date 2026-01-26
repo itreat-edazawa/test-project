@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+use App\Http\Requests\UploadImageRequest;
+
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Likes;
 use App\Models\Reply;
+use App\Models\Image;
+use App\Models\PostImage;
 
 use Illuminate\Http\Request;
 
@@ -133,9 +137,35 @@ class PostController extends Controller
             'body' => 'required|max:400',
         ]);
 
+        $imagefiles = $request->file('images');
+        $image_ids = [];
+
+        if(!empty($imagefiles)){
+            $tmp = 0;
+
+            foreach($imagefiles as $imagefile){
+               $imagefilepath = $imagefile->store('post_image','public');
+               $image = Image::create([
+                'name' => $imagefilepath
+               ]);
+               $image_ids[$tmp] = $image->id;
+
+               $tmp++;
+            }
+        }
+
         $validated['user_id'] = auth()->id();
 
         $post = Post::create($validated);
+
+        $post_id = $post->id;
+
+        foreach($image_ids as $image_id){
+            $post_image = PostImage::create([
+                'post_id' => $post_id,
+                'image_id' => $image_id,
+            ]);
+        }
 
         $request->session()->flash('message', '保存しました');
 
