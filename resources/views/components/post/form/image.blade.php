@@ -11,6 +11,23 @@
             },
             removeField(index) {
                 this.fields.splice(index,1);
+            },
+
+            preview(index,event){
+
+                const file = event.target.files[0];
+
+                if(file){
+                    this.fields[index].file = file;
+
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        this.fields[index].preview = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+                }
             }
         }
     }
@@ -19,7 +36,8 @@
     <template x-for="(field, i) in fields" :key="i">
         <div class="w-full flex my-2">
             <label :for="field.id" class="border border-gray-300 rounded-md p-2 w-full bg-white cursor-pointer">
-                <input type="file" accept="image/*" class="sr-only" :id="field.id" name="images[]" @change="fields[i].file = $event.target.files[0]">
+                <input type="file" accept="image/*" class="sr-only" :id="field.id" name="images[]" @change="preview(i,$event)">
+                <img :src="field.preview" x-show="field.preview">
                 <span x-text="field.file ? field.file.name : '画像を選択'" class="text-gray-700"></span>
             </label>
         <button type="reset" @click="removeField(i)" class="p-2">
