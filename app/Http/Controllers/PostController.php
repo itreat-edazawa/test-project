@@ -154,6 +154,7 @@ class PostController extends Controller
         $replies = Reply::where('posts_id',$post['id'])
         ->latest()
         ->paginate();
+
         return view('post.show', compact('post','replies'));
 
         
