@@ -31,6 +31,11 @@ class Post extends Model
         return $this->HasMany(Post::class,'posts_id');
     }
 
+    public function images(){
+        return $this->belongToMany(Image::class, 'post_images')
+        ->using(PostImage::class);
+    }
+
     public function CheckLiked(){
         $id = Auth::id();
 

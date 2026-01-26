@@ -25,13 +25,7 @@
 
                     @livewire('delete-post-modal', ['post' => $post])
 
-                    <!--<form method="post" action="{{route('post.destroy',$post)}}" class="flex-2">
-                        @csrf
-                        @method('delete')
-                        <x-primary-button class="bg-red-700 ml-2">
-                            削除
-                        </x-primary-button>
-                    </form>!-->
+                    
                 </div>
                 @endcan
                 <hr class="w-full">
@@ -62,7 +56,7 @@
                     <div class="mt-4 p-4">
                         
                         <h1 class="text-lg font-semibold">
-                            {{$reply->reply_user_id}}
+                            {{$reply->user->name}}
                         </h1>
 
                         <p class="mt-4 whitespace-pre-line">
