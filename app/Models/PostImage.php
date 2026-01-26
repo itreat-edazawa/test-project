@@ -12,4 +12,9 @@ class PostImage extends Pivot
         'post_id',
         'image_id',
     ];
+
+    public function post(){
+        //image_idとPosttableを紐付け
+        $this->belongTo(Post::class,'image_id');
+    }
 }
