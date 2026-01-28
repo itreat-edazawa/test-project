@@ -3,8 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controller\CsvDownloadController;
+use App\Http\Controllers\CsvDownloadController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashBoardController;
 
 
 /*test用
@@ -30,6 +31,8 @@ Route::post('post',[PostController::class, 'store'])
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/',[DashBoardController::class,'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -25,7 +25,16 @@ class DashBoardController extends Controller
 
         $posts = Post::query();
 
-        
+        $posts = $posts->withCount([
+            'likes as today_likes_count' => function($query) {
+                $query->whereDate('created_at', Carbon::today());
+            }
+        ])->orderBy('today_likes_count', 'desc');
+
+        $posts = $posts->take(10)->get();
+
+        return view('dashboard', compact('posts'));
+
 
     }
 }
