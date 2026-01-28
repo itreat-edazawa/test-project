@@ -73,11 +73,7 @@
             </x-primary-button>
         </form>
     <div class="mx-auto px-6">
-        {{-- @if(session('message'))
-            <div class="tezt-red-600 font-bold">
-                {{session('message')}}
-            </div>
-        @endif --}}
+       
         <x-message :message="session('message')" />
         @foreach($posts as $post)
         <div class="mt-4 p-8 bg-white w-full rounded-2xl">

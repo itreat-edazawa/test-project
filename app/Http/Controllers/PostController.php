@@ -129,7 +129,7 @@ class PostController extends Controller
     
     
     public function store(Request $request){
-        Gate::authorize('test');
+        
 
 
         $validated = $request->validate([
@@ -192,10 +192,13 @@ class PostController extends Controller
     }
 
     public function edit(Post $post) {
+        $user = auth()->id();
+        Gate::authorize('edit-post',$post);
         return view('post.edit', compact('post'));
     }
 
     public function update(Request $request, Post $post){
+        Gate::authorize('edit-post',$post);
         $validated = $request->validate([
             'title' => 'required|max:20',
             'body' => 'required|max:400',
@@ -210,6 +213,7 @@ class PostController extends Controller
     }
 
     public function destroy(Request $request,Post $post) {
+        Gate::authorize('edit-post',$post);
         $post->delete();
         $request->session()->flash('message', '削除しました');
         return redirect()->route('post.index');

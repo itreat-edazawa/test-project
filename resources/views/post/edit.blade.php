@@ -28,6 +28,7 @@
                 <textarea name="body" class="w-auto py-2 border border-gray-300 rounded-md" id="body" cols="30" rows="5">{{old('body', $post->body)}}</textarea>
             </div>
         
+            <!--ここにx-post.edit.imageeditのコンポーネントを追加予定!-->
             <x-primary-button class="mt-4">
                     送信する
             </x-primary-button>
