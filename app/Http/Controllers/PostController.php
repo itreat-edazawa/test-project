@@ -121,7 +121,7 @@ class PostController extends Controller
 
         
 
-        $posts = $posts->paginate(10);
+        $posts = $posts->latest()->paginate(10);
 
         return view('post.index', compact('posts'));
         
