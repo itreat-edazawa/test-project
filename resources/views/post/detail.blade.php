@@ -30,6 +30,20 @@
             <p class="mt-4 p-4">
                 {{$post->body}}
             </p>
+
+            @foreach($post->images as $index => $image)
+                @if($index % 2 == 0)
+                    <div class = "flex">
+                @endif
+                <p class="m-2">
+                    <img src="{{asset('storage/'.$image->name)}}" alt="{{$image->name}}">
+                </p>
+                @if($index % 2 != 0 or $loop->last)
+                    </div>
+                @endif
+            @endforeach
+            
+            
             <div class="p-4 text-sm font-semibold flex">
                 <p>
                     {{$post->created_at}} / 

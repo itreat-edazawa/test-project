@@ -217,6 +217,7 @@ class PostController extends Controller
 
     public function detail(String $user_id){
         $posts = Post::query()->where('user_id',$user_id)
+                ->latest()
                 ->paginate(10);
         
         $user = User::where('id',$user_id)->first();
