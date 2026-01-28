@@ -44,14 +44,7 @@ class PostController extends Controller
             'time_fn' => 'nullable|date|before_or_equal:'.Carbon::now()->format('Y-m-d'),
 
 
-            /*
-            'time_st_year' => 'nullable|integer|between:2000,2050',
-            'time_st_month' => 'nullable|integer|between:1,12',
-            'time_st_day' => 'nullable|integer|between:1,31',
-            'time_fn_year' => 'nullable|integer|between:2000,2050',
-            'time_fn_month' => 'nullable|integer|between:1,12',
-            'time_fn_day' => 'nullable|integer|between:1,31',
-            */
+            
 
         ],[
             
@@ -59,6 +52,9 @@ class PostController extends Controller
 
         $posts = Post::query();
         $sort_id = $request['sort_id'] ?? '0';
+
+        
+        
         if(!empty($request['sort_id'])){
             
 
@@ -68,17 +64,20 @@ class PostController extends Controller
             else if($sort_id=='oldest'){
                 $posts = Post::oldest();
             }
-            //いいねの数把握
+            
             else if($sort_id=='most likes'){
-                $posts = Post::orderby('like_sum','desc');
+                $posts = $posts->withCount('likes')->orderby('likes_count','desc');
             }
             else if($sort_id=='least likes'){
-                $posts = Post::orderby('like_sum','asc');
+                $posts = $posts->withCount('likes')->orderby('likes_count','asc');
             }
 
        
 
         
+        }
+        else{
+            $posts->latest();
         }
         
 
@@ -98,6 +97,7 @@ class PostController extends Controller
 
         if(!empty($username)){
             $posts = $posts->join('users','posts.user_id','=','users.id')
+                     ->select('posts.*')
                      ->where('name', 'LIKE', '%' .$username. '%');
         }
 
@@ -121,7 +121,7 @@ class PostController extends Controller
 
         
 
-        $posts = $posts->latest()->paginate(10);
+        $posts = $posts->paginate(10);
 
         return view('post.index', compact('posts'));
         
@@ -175,8 +175,9 @@ class PostController extends Controller
     public function index(Request $request){
 
         
-
-        $posts=Post::paginate(10);
+        
+        $posts=Post::paginate(10)->withCount('likes');
+        
         return view('post.index', compact('posts'));
     }
 
@@ -294,15 +295,18 @@ class PostController extends Controller
             }
             //いいねの数把握
             else if($sort_id=='most likes'){
-                $posts = Post::orderby('like_sum','desc');
+                $posts = $posts->withCount('likes')->orderby('likes_count','desc');
             }
             else if($sort_id=='least likes'){
-                $posts = Post::orderby('like_sum','asc');
+                $posts = $posts->withCount('likes')->orderby('likes_count','asc');
             }
 
        
 
         
+        }
+        else{
+            $posts = $posts->latest();
         }
         
 
@@ -322,6 +326,7 @@ class PostController extends Controller
 
         if(!empty($username)){
             $posts = $posts->join('users','posts.user_id','=','users.id')
+                     ->select('posts.*')
                      ->where('name', 'LIKE', '%' .$username. '%');
         }
 
