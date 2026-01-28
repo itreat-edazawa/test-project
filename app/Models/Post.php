@@ -32,7 +32,7 @@ class Post extends Model
     }
 
     public function images(){
-        return $this->belongToMany(Image::class, 'post_images')
+        return $this->belongsToMany(Image::class, 'post_images')
         ->using(PostImage::class);
     }
 
