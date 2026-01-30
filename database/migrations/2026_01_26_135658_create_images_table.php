@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run this migration outside of a transaction so we can see the real
-     * PostgreSQL error instead of "current transaction is aborted".
-     */
-    public $withinTransaction = false;
-
-    /**
      * Run the migrations.
      */
     public function up(): void
