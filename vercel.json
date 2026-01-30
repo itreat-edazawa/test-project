@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/index.php",
-      "use": "@vercel/php"
-    }
-  ],
   "routes": [
     {
       "src": "/build/(.*)",
@@ -22,7 +16,8 @@
   ],
   "functions": {
     "api/index.php": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "runtime": "@vercel/php"
     }
   },
   "buildCommand": "NODE_OPTIONS='--max-old-space-size=4096' npm run build",
