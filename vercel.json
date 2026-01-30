@@ -29,7 +29,7 @@
         "APP_ENV": "production",
         "APP_URL": "https://vercel.com/edazawa-takumas-projects/test-project",
         "SESSION_SECURE_COOKIE": "true",
-        "SANCTUM_STATEFUL_DOMAINS": "test-project.vercel.app",
+        "SANCTUM_STATEFUL_DOMAINS": "test-project-igfpesr86-edazawa-takumas-projects.vercel.app/",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
