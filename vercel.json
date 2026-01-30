@@ -30,7 +30,8 @@
     ],
     "env": {
         "APP_NAME": "Laravel Vercel",
-        "APP_DEBUG": "false",
+        "APP_KEY": "base64:03+keM3YHpsXYkW0m4/t/ojMakU5PSLcqFjSktFI2LY=",
+        "APP_DEBUG": "true",
         "APP_ENV": "production",
         "APP_URL": "",
         "SESSION_SECURE_COOKIE": "true",
@@ -45,6 +46,8 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "VIEW_COMPILED_PATH": "/tmp",
-        "STORAGE_PATH": "/tmp/storage"
+        "STORAGE_PATH": "/tmp/storage",
+        "DB_CONNECTION": "sqlite",
+        "DB_DATABASE": "database/database.sqlite"
     }
 }
