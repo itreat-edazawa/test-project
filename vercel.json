@@ -46,6 +46,9 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "VIEW_COMPILED_PATH": "/tmp",
-        "STORAGE_PATH": "/tmp/storage"
+        "STORAGE_PATH": "/tmp/storage",
+        "DB_CONNECTION":"pgsql",
+        "DB_PORT":"5432",
+        "DB_URL":"postgresql://neondb_owner:npg_tWXQ35lGMoRI@ep-little-pond-ahvsgrul-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
     }
 }
