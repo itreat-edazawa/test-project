@@ -1,5 +1,5 @@
 <head>
-    {{-- <!--@vite(['resources/css/index.css'])!--> --}}
+    @vite(['resources/css/index.css'])
 </head>
 <x-app-layout>
     <x-slot name="header">
