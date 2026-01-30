@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "@vercel/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ],
+  "functions": {
+    "api/index.php": {
+      "maxDuration": 30
+    }
+  },
+  "buildCommand": "NODE_OPTIONS='--max-old-space-size=4096' npm run build",
+  "installCommand": "composer install --no-dev --optimize-autoloader && npm ci",
+  "framework": null,
+  "env": {
+    "NODE_OPTIONS": "--max-old-space-size=4096"
+  }
+}
+
