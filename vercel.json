@@ -6,7 +6,7 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "@vercel/php"
+            "use": "vercel-php@0.6.2"
         }
     ],
     "buildCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run build",
