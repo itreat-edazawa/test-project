@@ -46,8 +46,6 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
         "VIEW_COMPILED_PATH": "/tmp",
-        "STORAGE_PATH": "/tmp/storage",
-        "DB_CONNECTION": "sqlite",
-        "DB_DATABASE": "database/database.sqlite"
+        "STORAGE_PATH": "/tmp/storage"
     }
 }
