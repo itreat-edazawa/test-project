@@ -6,17 +6,22 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.6.2"
-        },
-        {
-            "src": "public/**",
-            "use": "vercel-php@0.6.2"
+            "use": "@vercel/php"
         }
     ],
+    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run build",
     "routes": [
         {
             "src": "/build/(.*)",
             "dest": "/public/build/$1"
+        },
+        {
+            "src": "/storage/(.*)",
+            "dest": "/public/storage/$1"
+        },
+        {
+            "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|json))",
+            "dest": "/public/$1"
         },
         {
             "src": "/(.*)",
@@ -27,9 +32,9 @@
         "APP_NAME": "Laravel Vercel",
         "APP_DEBUG": "false",
         "APP_ENV": "production",
-        "APP_URL": "https://vercel.com/edazawa-takumas-projects/test-project",
+        "APP_URL": "",
         "SESSION_SECURE_COOKIE": "true",
-        "SANCTUM_STATEFUL_DOMAINS": "test-project-igfpesr86-edazawa-takumas-projects.vercel.app/",
+        "SANCTUM_STATEFUL_DOMAINS": "test-project-igfpesr86-edazawa-takumas-projects.vercel.app",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -39,6 +44,7 @@
         "CACHE_STORE": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp"
+        "VIEW_COMPILED_PATH": "/tmp",
+        "STORAGE_PATH": "/tmp/storage"
     }
 }
