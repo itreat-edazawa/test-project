@@ -1,14 +1,3 @@
 /vendor
 /node_modules
 /.env
-/storage
-/bootstrap/cache
-/public/hot
-/public/storage
-/storage/*.key
-/.git
-/.github
-/tests
-/phpunit.xml
-/.phpunit.result.cache
-
