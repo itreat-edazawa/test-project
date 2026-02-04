@@ -4,9 +4,9 @@
         "private": true,
         "type": "module",
         "scripts": {
-          "dev": "vite",
-          "build": "vite build"
-        },
+            "dev": "vite",
+            "build": "vite build && mv public/build/.vite/manifest.json public/build/manifest.json"
+        },    
         "devDependencies": {
           "vite": "^5.4.21",
           "laravel-vite-plugin": "^1.2.0",
