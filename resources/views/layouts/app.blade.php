@@ -12,8 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        <link rel="stylesheet" href="/build/assets/app.css">
-        <script src="/build/assets/app.js"></script>
+        <link rel="stylesheet" href="/build/assets/css/app.css">
+        <script src="/build/assets/js/app.js"></script>
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
