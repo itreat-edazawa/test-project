@@ -1,5 +1,5 @@
 <head>
-    @vite(['resources/css/index.css'])
+    <link rel="stylesheet" href="/build/assets/index.css">
 </head>
 <x-app-layout>
     <x-slot name="header">
