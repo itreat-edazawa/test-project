@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="/build/assets/css/index.css">
+    <link rel="stylesheet" href="build/assets/app-D4YsvGSv.css">
 </head>
 <x-app-layout>
     <x-slot name="header">

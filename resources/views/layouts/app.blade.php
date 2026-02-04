@@ -13,7 +13,9 @@
 
         <!-- Scripts -->
         <link rel="stylesheet" href="/build/assets/css/app.css">
+        <link rel="stylesheet" href="/build/assets/css/app-D4YsvGSv.css">
         <script src="/build/assets/js/app.js"></script>
+        <script src="/build/assets/js/app-DNg7CCpm.js"></script>
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
