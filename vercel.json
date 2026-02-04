@@ -15,7 +15,17 @@
       "config": { "distDir": "public/build" }
     }
   ],
-    "buildCommand": "composer install --no-dev --optimize-autoloader && pnpm install && pnpm run build",
+    "build": {
+      "env": {
+        "NODE_VERSION": "22.x"
+      },
+      "commands": [
+        "composer install --no-dev --optimize-autoloader",
+        "corepack enable && corepack prepare pnpm@latest --activate",
+        "pnpm install",
+        "pnpm run build"
+      ]
+    },
     "routes": [
         {
             "src": "/build/(.*)",
