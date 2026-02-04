@@ -1,5 +1,5 @@
 <head>
-    @vite('resources/css/index.css')
+    <link rel="stylesheet" href="{{ asset('build/index-QHtRp5ob.css') }}">
 
 </head>
 <x-app-layout>

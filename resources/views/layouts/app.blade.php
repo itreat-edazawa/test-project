@@ -12,7 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('build/app-D4YsvGSv.css') }}">
+        <script src="{{ asset('build/app-DNg7CCpm.js') }}"></script>
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
