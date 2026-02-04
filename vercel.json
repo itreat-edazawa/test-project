@@ -4,12 +4,18 @@
         "hnd1"
     ],
     "builds": [
-        {
-            "src": "api/index.php",
-            "use": "vercel-php@0.6.2"
-        }
-    ],
-    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run build",
+    {
+    "src": "api/index.php",
+    "use": "vercel-php@0.6.2"
+
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": { "distDir": "public/build" }
+    }
+  ],
+    "buildCommand": "composer install --no-dev --optimize-autoloader && corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
     "routes": [
         {
             "src": "/build/(.*)",
@@ -49,6 +55,7 @@
         "STORAGE_PATH": "/tmp/storage",
         "DB_CONNECTION":"pgsql",
         "DB_PORT":"5432",
-        "DB_URL":"postgresql://neondb_owner:npg_tWXQ35lGMoRI@ep-little-pond-ahvsgrul-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+        "DB_URL":"postgresql://neondb_owner:npg_tWXQ35lGMoRI@ep-little-pond-ahvsgrul-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+        "NODE_VERSION":"22.11.0"
     }
 }
