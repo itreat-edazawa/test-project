@@ -15,8 +15,13 @@
       "config": { "distDir": "public/build" }
     }
   ],
-    "buildCommand": "composer install --no-dev --optimize-autoloader && corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
-    "outputDirectory": "public/build",
+    "commands": [
+    "composer install --no-dev --optimize-autoloader",
+    "corepack enable",
+    "corepack prepare pnpm@latest --activate",
+    "pnpm install",
+    "pnpm run build"
+    ],
     "routes": [
         {
             "src": "/build/(.*)",
