@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "vercel-build": "pnpm run build && mv public/build/.vite/manifest.json public/build/manifest.json"
+        "vercel-build": "pnpm run build"
     },
     "devDependencies": {
         "vite": "^5.4.21",
