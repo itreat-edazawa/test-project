@@ -15,7 +15,7 @@
       "config": { "distDir": "public/build" }
     }
   ],
-    "buildCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run build",
+    "buildCommand": "composer install --no-dev --optimize-autoloader && pnpm install && pnpm run build",
     "routes": [
         {
             "src": "/build/(.*)",
