@@ -12,12 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        <link rel="stylesheet" href="/build/assets/css/app.css">
-        <link rel="stylesheet" href="/build/assets/css/app-D4YsvGSv.css">
-        <script src="/build/assets/js/app.js"></script>
-        <script src="/build/assets/js/app-DNg7CCpm.js"></script>
-        <link rel="stylesheet" href="/build/output.css">
-        <script src="/build/output.js"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
     <body class="font-sans antialiased">

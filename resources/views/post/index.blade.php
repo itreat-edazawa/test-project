@@ -1,7 +1,5 @@
 <head>
-    <link rel="stylesheet" href="/build/assets/css/index.css">
-    <link rel="stylesheet" href="build/assets/app-D4YsvGSv.css">
-    <link rel="stylesheet" href="/build/output.css">
+    @vite('resources/css/index.css')
 
 </head>
 <x-app-layout>
