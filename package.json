@@ -5,7 +5,7 @@
         "type": "module",
         "scripts": {
             "dev": "vite",
-            "build": "vite build && mv public/build/.vite/manifest.json public/build/manifest.json"
+            "build": "vite build"
         },
             "devDependencies": {
               "vite": "^5.4.21",
