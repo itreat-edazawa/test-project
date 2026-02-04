@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "vercel-build": "pnpm run build"
+        "build": "vite build",
+        "vercel-build": "pnpm run build && mv public/build/.vite/manifest.json public/build/manifest.json"
     },
     "devDependencies": {
         "vite": "^5.4.21",
