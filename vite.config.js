@@ -1,5 +1,7 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
+import { resolve } from 'path'
+import fs from 'fs'
 
 export default defineConfig({
     plugins: [
@@ -7,13 +9,19 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
+        {
+            name: 'copy-manifest-to-public',
+            closeBundle() {
+                const src = '.vercel/output/static/build/manifest.json'
+                const dest = 'public/build/manifest.json'
+                fs.mkdirSync('public/build', { recursive: true })
+                fs.copyFileSync(src, dest)
+            }
+        }
     ],
     build: {
-        chunkSizeWarningLimit: 1000,
-        rollupOptions: {
-            output: {
-                manualChunks: undefined,
-            },
-        },
+        outDir: '.vercel/output/static/build',
+        emptyOutDir: true,
+        manifest: true,
     },
-});
+})
