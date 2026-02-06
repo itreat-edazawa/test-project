@@ -28,7 +28,6 @@
         "rewrites": [
           { "source": "/build/(.*)", "destination": "/public/build/$1" },
           { "source": "/storage/(.*)", "destination": "/public/storage/$1" },
-          { "source": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|json))", "destination": "/public/$1" },
           { "source": "/(.*)", "destination": "/api/index.php" }
         ],
     "env": {
