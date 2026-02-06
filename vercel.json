@@ -12,6 +12,8 @@
           { "handle": "filesystem" },
           { "src": "/(.*)", "dest": "/api/index.php" }
         ], 
+
+        "outputDirectory": "public/build",
       
         "buildCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
     "env": {
