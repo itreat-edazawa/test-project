@@ -8,7 +8,7 @@
           }
         },
       
-        "installCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
+        "buildCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
       
         "headers": [
           {
