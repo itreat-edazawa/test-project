@@ -3,18 +3,11 @@
     "regions": [
         "hnd1"
     ],
-    "builds": [
-    {
-    "src": "api/index.php",
-    "use": "vercel-php@0.6.2"
-
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": { "distDir": "public/build" }
+    "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.6.2"
     }
-  ],
+  },
     "buildCommand": "composer install --no-dev --optimize-autoloader && corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
     "routes": [
         {
