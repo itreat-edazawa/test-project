@@ -24,7 +24,13 @@
         },
         {
             "src": "/(.*)",
-            "dest": "api/index.php"
+            "dest": "api/index.php",
+            "headers": [
+                {
+                    "key": "cache-control",
+                    "value": "no-store, no-cache, must-revalidate, max-age=0"
+                }
+            ]
         }
     ],
     "env": {
