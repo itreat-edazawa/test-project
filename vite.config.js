@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
-import { resolve } from 'path'
 import fs from 'fs'
 
 export default defineConfig({
@@ -10,12 +9,18 @@ export default defineConfig({
             refresh: true,
         }),
         {
-            name: 'copy-manifest-to-public',
+            name: 'laravel-vercel-manifest-fix',
             closeBundle() {
-                const src = '.vercel/output/static/build/manifest.json'
+                const src = '.vercel/output/static/build/.vite/manifest.json'
                 const dest = 'public/build/manifest.json'
-                fs.mkdirSync('public/build', { recursive: true })
-                fs.copyFileSync(src, dest)
+
+                if (fs.existsSync(src)) {
+                    fs.mkdirSync('public/build', { recursive: true })
+                    fs.copyFileSync(src, dest)
+                    console.log('manifest copied for laravel')
+                } else {
+                    console.log('manifest not found, skip copy')
+                }
             }
         }
     ],
