@@ -14,12 +14,6 @@
         ], 
       
         "buildCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
-      
-        "rewrites": [
-          { "source": "/build/(.*)", "destination": "/public/build/$1" },
-          { "source": "/storage/(.*)", "destination": "/public/storage/$1" },
-          { "source": "/(.*)", "destination": "/api/index.php" }
-        ],
     "env": {
         "APP_NAME": "Laravel Vercel",
         "APP_KEY": "base64:03+keM3YHpsXYkW0m4/t/ojMakU5PSLcqFjSktFI2LY=",
