@@ -15,7 +15,7 @@
 
         "outputDirectory": "public/build",
       
-        "buildCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install --no-frozen-lockfile && pnpm run build && php artisan config:clear && php artisan view:clear && php artisan route:clear",
+        "buildCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install --no-frozen-lockfile && pnpm run build",
     "env": {
         "APP_NAME": "Laravel Vercel",
         "APP_KEY": "base64:03+keM3YHpsXYkW0m4/t/ojMakU5PSLcqFjSktFI2LY=",
