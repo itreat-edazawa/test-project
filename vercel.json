@@ -8,7 +8,7 @@
       "runtime": "vercel-php@0.6.2"
     }
   },
-    "buildCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
+    "installCommand": "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run build",
     "routes": [
         {
             "src": "/build/(.*)",
